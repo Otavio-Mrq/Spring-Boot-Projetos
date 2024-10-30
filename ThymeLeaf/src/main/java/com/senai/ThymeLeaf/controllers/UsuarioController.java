@@ -1,7 +1,6 @@
 package com.senai.ThymeLeaf.controllers;
 
 import com.senai.ThymeLeaf.dtos.CadastroDto;
-import com.senai.ThymeLeaf.dtos.LoginDto;
 import com.senai.ThymeLeaf.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -44,16 +42,5 @@ public class UsuarioController {
         
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao excluir usuário.");
         
-    }
-
-    @PostMapping("/{id}")
-    public String atualizarUsuario(@ModelAttribute("usuarioDto") @PathVariable Long id, CadastroDto atualizar){
-        
-        boolean sucesso = usuarioService.atualizarUsuario(id,atualizar);
-        
-        if(sucesso){
-            return "redirect:/listausuarios";
-        }
-        return "redirect:/listausuarios?erro";
     }
 }
