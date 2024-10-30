@@ -108,21 +108,4 @@ public class UsuarioService {
         
         return usuarioDto;
     }
-    
-    public boolean atualizarUsuario(Long id, CadastroDto dados){
-        
-         Optional<UsuarioModel> optionalUsuario = usuarioRepository.findById(id);
-         
-         if(!optionalUsuario.isPresent()){
-             return false;
-         }
-         
-         UsuarioModel usuario = new UsuarioModel();
-         usuario.setEmail(dados.getEmail());
-         usuario.setSenha(dados.getSenha());
-         
-         usuarioRepository.save(usuario);
-                 
-        return true;
-    }
 }

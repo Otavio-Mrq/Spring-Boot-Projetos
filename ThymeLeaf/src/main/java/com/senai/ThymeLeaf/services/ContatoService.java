@@ -100,7 +100,7 @@ public class ContatoService {
         return contatoDto;
     }
     
-    public boolean atualizarUsuario(Long id, ContatoDto dados){
+    public boolean atualizarContato(Long id, ContatoDto dados){
         
          Optional<ContatoModel> optionalUsuario = repository.findById(id);
          
@@ -108,7 +108,7 @@ public class ContatoService {
              return false;
          }
          
-         ContatoModel contato = new ContatoModel();
+         ContatoModel contato = optionalUsuario.get();
          contato.setEmail(dados.getEmail());
          contato.setCpf(dados.getCpf());
          contato.setNome(dados.getNome());

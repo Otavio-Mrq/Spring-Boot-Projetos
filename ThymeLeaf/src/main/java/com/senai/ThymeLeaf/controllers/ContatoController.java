@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -22,19 +23,19 @@ public class ContatoController {
     ContatoService contatoService;
     
     @PostMapping()
-    public String cadastrarUsuario(@ModelAttribute("usuario") CadastroContatoDto cadastro){
+    public String cadastrarContato(@ModelAttribute("contatoDto") CadastroContatoDto cadastro){
         
         boolean sucesso = contatoService.cadastrarContato(cadastro);
         
         if (sucesso){
-            return "redirect:listausuarios";
+            return "redirect:listacontato";
         }
 
-        return "redirect:cadastrarusuario?erro";        
+        return "redirect:cadastrarcontato?erro";        
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<String>  excluirUsuario(@PathVariable Long id){
+    public ResponseEntity<String>  excluirContato(@PathVariable Long id){
     
         boolean sucesso = contatoService.excluirContato(id);
         
@@ -47,14 +48,14 @@ public class ContatoController {
     }
     
     @PostMapping("/{id}")
-    public String atualizarUsuario(@ModelAttribute("contato") @PathVariable Long id, ContatoDto atualizar){
+    public String atualizarContato(@ModelAttribute("contato") @PathVariable Long id, ContatoDto atualizar){
         
-        boolean sucesso = contatoService.atualizarUsuario(id,atualizar);
+        boolean sucesso = contatoService.atualizarContato(id,atualizar);
         
         if(sucesso){
-            return "redirect:listausuarios";
+            return "redirect:listacontato";
         }
-        return "redirect:listausuarios?erro";
+        return "redirect:listacontato?erro";
     }
 }
 
