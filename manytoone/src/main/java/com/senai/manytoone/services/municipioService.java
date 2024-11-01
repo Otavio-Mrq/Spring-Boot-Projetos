@@ -5,6 +5,8 @@ import com.senai.manytoone.dtos.municipioDto;
 import com.senai.manytoone.model.estadoModel;
 import com.senai.manytoone.model.municipioModel;
 import com.senai.manytoone.repository.municipioRepository;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,4 +34,23 @@ public class municipioService {
         
         return true;
     }
+      public List<municipioDto> obterListaMunicipios(){
+
+            List<municipioModel> listaMunicipioModel = repository.findAll();
+
+            List<municipioDto> listaMunicipio = new ArrayList();
+
+            for (municipioModel municipio : listaMunicipioModel){
+
+                municipioDto municipiodto = new municipioDto();
+                municipiodto.setId(municipio.getId() );
+                municipiodto.setNome(municipio.getNome());
+                municipiodto.setEstado(municipio.getEstado());
+
+                listaMunicipio.add(municipiodto);
+            }
+
+            return listaMunicipio;
+
+        }    
 }
