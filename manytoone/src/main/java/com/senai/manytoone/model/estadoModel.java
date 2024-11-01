@@ -14,7 +14,7 @@ public class estadoModel {
     @Id
     @Column(name = "id_estado")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     
     @Column(name="nomeEstado")
     private String nome;
@@ -26,7 +26,7 @@ public class estadoModel {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

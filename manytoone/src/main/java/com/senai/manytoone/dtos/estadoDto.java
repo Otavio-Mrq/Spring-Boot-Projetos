@@ -2,7 +2,7 @@ package com.senai.manytoone.dtos;
 
 public class estadoDto {
 
-    private long id;
+    private Long id;
     
     private String nome;
     
@@ -15,7 +15,7 @@ public class estadoDto {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
