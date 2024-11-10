@@ -8,10 +8,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import lombok.Data;
+import org.hibernate.envers.Audited;
 
 @Entity
 @Table (name="CONTATO")
 @Data
+@Audited
 public class ContatoModel {
     
     @Id
