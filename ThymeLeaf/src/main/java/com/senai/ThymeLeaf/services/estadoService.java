@@ -91,4 +91,22 @@ public class estadoService {
         return true;
         
     }
+         public boolean atualizarEstado(Long id, estadoDto dados){
+        
+         Optional<estadoModel> optionalUsuario = repository.findById(id);
+         
+         if(!optionalUsuario.isPresent()){
+             return false;
+         }
+         
+         estadoModel estado = optionalUsuario.get();
+         estado.setId(dados.getId());
+         estado.setNome(dados.getNome());
+         estado.setSigla(dados.getSigla());
+         
+         
+         repository.save(estado);
+                 
+        return true;
+    }
 }
