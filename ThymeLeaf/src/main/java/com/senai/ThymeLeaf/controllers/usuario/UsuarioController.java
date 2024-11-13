@@ -1,6 +1,7 @@
 package com.senai.ThymeLeaf.controllers.usuario;
 
 import com.senai.ThymeLeaf.dtos.CadastroDto;
+import com.senai.ThymeLeaf.dtos.UsuarioDto;
 import com.senai.ThymeLeaf.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,4 +44,16 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao excluir usuário.");
         
     }
+    
+     @PostMapping("/{id}")
+    public String atualizarContato(@ModelAttribute("contato") @PathVariable Long id, UsuarioDto atualizar){
+        
+        boolean sucesso = usuarioService.atualizarUsuario(id,atualizar);
+        
+        if(sucesso){
+            return "redirect:listacontato";
+        }
+        return "redirect:listacontato?erro";
+    }
+    
 }

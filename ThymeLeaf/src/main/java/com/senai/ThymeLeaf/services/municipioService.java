@@ -50,5 +50,58 @@ public class municipioService {
 
             return listaMunicipio;
 
-        }    
+        }
+      
+      public municipioDto obterMunicipio(Long id){
+        
+        Optional<municipioModel> optionalEstado = repository.findById(id);
+        
+        municipioDto estado = new municipioDto();
+        
+        if (!optionalEstado.isPresent()){            
+            estado.setId(0L);
+            return estado;
+        }
+        
+        estado.setId(optionalEstado.get().getId());
+        estado.setNome(optionalEstado.get().getNome());  
+        estado.setEstado(optionalEstado.get().getEstado());
+
+        
+        return estado;
+    }
+         public boolean excluirMunicipio(Long id){
+        
+        System.out.println("id:" + id);
+        
+        Optional<municipioModel> optionalMunicipio= repository.findById(id);
+        
+        if (!optionalMunicipio.isPresent()){
+            return false;
+        }
+        
+        repository.delete(optionalMunicipio.get());
+        
+        return true;
+        
+    }
+         
+        public boolean atualizarMunicipio(Long id, municipioDto dados){
+        
+         Optional<municipioModel> optionalMunicipio = repository.findById(id);
+         
+         if(!optionalMunicipio.isPresent()){
+             return false;
+         }
+         
+         municipioModel municipio = optionalMunicipio.get();
+         municipio.setId(dados.getId());
+         municipio.setNome(dados.getNome());
+         municipio.setEstado(dados.getEstado());
+         
+         
+         repository.save(municipio);
+                 
+        return true;
+    } 
 }

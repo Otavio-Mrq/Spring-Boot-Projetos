@@ -43,4 +43,15 @@ public class estadoController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao excluir usuário.");
         
     }
+    
+    @PostMapping("/{id}")
+    public String atualizarContato(@ModelAttribute("contato") @PathVariable Long id, estadoDto atualizar){
+        
+        boolean sucesso = service.atualizarEstado(id,atualizar);
+        
+        if(sucesso){
+            return "redirect:listacontato";
+        }
+        return "redirect:listacontato?erro";
+    }
 }

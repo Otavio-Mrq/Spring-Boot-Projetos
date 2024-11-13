@@ -108,4 +108,23 @@ public class UsuarioService {
         
         return usuarioDto;
     }
+    public boolean atualizarUsuario(Long id, UsuarioDto dados){
+        
+         Optional<UsuarioModel> optionalUsuario = usuarioRepository.findById(id);
+         
+         if(!optionalUsuario.isPresent()){
+             return false;
+         }
+         
+         UsuarioModel usuario = optionalUsuario.get();
+         usuario.setId(dados.getId());
+         usuario.setEmail(dados.getEmail());
+         usuario.setSenha(dados.getSenha());
+         
+         
+         usuarioRepository.save(usuario);
+                 
+        return true;
+    }
 }
+
